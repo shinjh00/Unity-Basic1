@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoolTime : MonoBehaviour
@@ -20,6 +18,6 @@ public class CoolTime : MonoBehaviour
 
             jumpCoolTime = 0f;
         }
-        
+
     }
 }
