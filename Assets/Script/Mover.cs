@@ -7,13 +7,13 @@ public class Mover : MonoBehaviour
     public float movePower;
     public float jumpPower;
 
-    void Update()
+    private void Update()
     {
         Move();
         Jump();
     }
 
-    void Move()
+    private void Move()
     {
         // GetKey : 해당 키를 누르는 동안 true를 반복적으로 반환
         if (Input.GetKey(KeyCode.W))
@@ -34,7 +34,7 @@ public class Mover : MonoBehaviour
         }
     }
 
-    void Jump()
+    private void Jump()
     {
         // GetKeyDown : 해당 키를 누르면 단 한 번 true를 반환
         if (Input.GetKeyDown(KeyCode.Space))
@@ -42,5 +42,4 @@ public class Mover : MonoBehaviour
             rigid.AddForce(Vector3.up * jumpPower);
         }
     }
-
 }
