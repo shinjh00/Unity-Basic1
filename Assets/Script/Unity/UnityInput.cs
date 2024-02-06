@@ -1,22 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class UnityInput : MonoBehaviour
 {
-    /************************************************************************
-	 * 유니티 입력
-	 * 
-	 * 유니티에서 사용자의 명령을 감지할 수 있는 수단
-	 * 사용자는 외부 장치를 이용하여 게임을 제어할 수 있음
-	 * 유니티는 다양한 타입의 입력기기(키보드 및 마우스, 조이스틱, 터치스크린 등)를 지원
-	 ************************************************************************/
+    /*** Device ***/
 
-
-    // <Device>
     // 특정한 장치를 기준으로 입력 감지
     // 특정한 장치의 입력을 감지하기 때문에 여러 플랫폼에 대응이 어려움
     // ==> 자주 사용하지 않을것임
@@ -60,7 +48,8 @@ public class UnityInput : MonoBehaviour
     }
 
 
-    // <InputManager>
+    /*** InputManager ***/
+
     // 여러 장치의 입력을 입력매니저에 이름과 입력을 정의
     // 입력매니저의 이름으로 정의한 입력의 변경사항을 확인
     // 유니티 에디터의 Edit -> Project Settings -> Input Manager 에서 관리
@@ -72,12 +61,14 @@ public class UnityInput : MonoBehaviour
     private void InputByInputManager()
     {
         /* 축 입력 */
+        // WASD, 화살표
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
         transform.position += new Vector3(3 * x * Time.deltaTime, 3 * y * Time.deltaTime, 0);
 
         /* 버튼 입력 */
+        // Fire1 버튼 : 키보드(좌Ctrl), 마우스(좌클릭)
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Fire1 button is down");
@@ -93,7 +84,8 @@ public class UnityInput : MonoBehaviour
     }
 
 
-    // <InputSystem>
+    /*** InputSystem ***/
+
     // Unity 2019.1 부터 지원하게 된 입력방식
     // 컴포넌트를 통해 입력의 변경사항을 확인
     // GamePad, JoyStick, Mouse, Keyboard, Pointer, Pen, TouchScreen, XR 기기 등을 지원
@@ -140,8 +132,9 @@ public class UnityInput : MonoBehaviour
 
     private void Update()
     {
-        InputByDevice();
-        InputByInputManager();
+        //InputByDevice();
+
+        //InputByInputManager();
 
         /* InputSystem */
         Move();
