@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    /*
     private void OnTriggerEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -11,7 +12,7 @@ public class Item : MonoBehaviour
             Debug.Log("æ∆¿Ã≈€ »πµÊ");
             Destroy(gameObject);
         }
-    }
+    }*/
 
     /*private void OnTriggerEnter(Collider other)
     {

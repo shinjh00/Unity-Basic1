@@ -17,8 +17,10 @@ public class TankController : MonoBehaviour
     Vector3 moveDir;
     Vector3 headDir;
 
-    public CinemachineVirtualCamera normalCamera;
-    public CinemachineVirtualCamera zoomCamera;
+    //public CinemachineVirtualCamera normalCamera;
+    //public CinemachineVirtualCamera zoomCamera;
+
+    public Animator animator;
 
     private void Update()
     {
@@ -69,14 +71,12 @@ public class TankController : MonoBehaviour
 
     private void Fire()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        /*GameObject bulletObject = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletObject.GetComponent<Bullet>();
-        bullet.force = bulletForce;*/
-        /*Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.force = bulletForce;*/
-    }
+        Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bullet.force = bulletForce;
 
+        animator.SetTrigger("Fire");
+    }
+    /*
     private void OnHead()
     {
         Vector2 inputDir = InputValue.Get<Vector2>();
@@ -96,5 +96,5 @@ public class TankController : MonoBehaviour
             Debug.Log("Zoom off");
             zoomCamera.Priority = 1;
         }
-    }
+    }*/
 }
