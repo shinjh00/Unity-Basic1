@@ -20,7 +20,7 @@ public class Frame : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            //pos.x -= moveSpeed;  // 이렇게 하면
+            //pos.x -= moveSpeed;  // 이렇게 하면 프레임에 따라 출력이 달라짐
             pos.x -= moveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
