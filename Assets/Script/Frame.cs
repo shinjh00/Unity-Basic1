@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Frame : MonoBehaviour
 {
-    [SerializeField] Transform transform;
+    [SerializeField] Transform trans;
     [SerializeField] float moveSpeed;
 
     private void Start()
