@@ -89,25 +89,25 @@ public class UnityInput : MonoBehaviour
     // Unity 2019.1 부터 지원하게 된 입력방식
     // 컴포넌트를 통해 입력의 변경사항을 확인
     // GamePad, JoyStick, Mouse, Keyboard, Pointer, Pen, TouchScreen, XR 기기 등을 지원
-    private void InputByInputSystem()
-    {
-        // InputSystem은 이벤트 방식으로 구현됨
-        // Update마다 입력변경사항을 확인하는 방식 대신 변경이 있을 경우 이벤트로 확인
-        // 메시지를 통해 받는 방식과 이벤트 함수를 직접 연결하는 방식 등으로 구성
-    }
 
-    Vector3 moveDir;
+    // InputSystem은 이벤트 방식으로 구현됨
+    // Update마다 입력변경사항을 확인하는 방식 대신 변경이 있을 경우 이벤트로 확인
+    // 메시지를 통해 받는 방식과 이벤트 함수를 직접 연결하는 방식 등으로 구성
 
+    // <OnMove(), OnJump()>
     // 메시지 이벤트 방식. InputManager보다 자원 소모가 적음.
     // Move 입력에 반응하는 OnMove 메시지 함수
     // PlayerInput 밑에 메세지 뭐라고 나와있는 곳에 있음.
     // InputAction에 Actions 항목 있으면 포함된 함수들 호출 가능
-    private void OnMove(InputValue value)
+
+    Vector3 moveDir;
+
+    private void OnMove(InputValue value)  // InputValue : 입력된 키의 값
     {
         Vector2 inputDir = value.Get<Vector2>();
         moveDir.x = inputDir.x;
-        moveDir.y = inputDir.y;
-        //Debug.Log(inputDir);
+        moveDir.z = inputDir.y;
+        Debug.Log(inputDir);
     }
 
     private void Move()
@@ -115,18 +115,18 @@ public class UnityInput : MonoBehaviour
         transform.position += moveDir * 3f * Time.deltaTime;
     }
 
-    public Rigidbody rigidBody;
+    public Rigidbody rigid;
 
     private void OnJump(InputValue value)
     {
         bool inputButton = value.isPressed;
-        //Debug.Log(inputButton); 
-        Jump();
+        Debug.Log(inputButton);
+        Jump();  // 점프 같이 단발성인 기능은 여기에 넣어도 됨
     }
 
     private void Jump()
     {
-        rigidBody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+        rigid.AddForce(Vector3.up * 5f, ForceMode.Impulse);
     }
 
 
@@ -137,6 +137,6 @@ public class UnityInput : MonoBehaviour
         //InputByInputManager();
 
         /* InputSystem */
-        Move();
+        Move();  // 움직이는 것은 프레임마다 Update 되니까 여기에
     }
 }
