@@ -18,6 +18,5 @@ public class CoolTime : MonoBehaviour
 
             jumpCoolTime = 0f;
         }
-
     }
 }
