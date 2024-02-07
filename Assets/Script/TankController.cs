@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
@@ -20,7 +21,11 @@ public class TankController : MonoBehaviour
     //public CinemachineVirtualCamera normalCamera;
     //public CinemachineVirtualCamera zoomCamera;
 
-    public Animator animator;
+    //public Animator animator;
+
+    // 옵저버 - 이벤트
+    public UnityEvent OnFiring;
+    public UnityEvent OnFired;
 
     private void Update()
     {
@@ -71,11 +76,24 @@ public class TankController : MonoBehaviour
 
     private void Fire()
     {
+        OnFiring.Invoke();
+
         Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.force = bulletForce;
 
-        animator.SetTrigger("Fire");
+        //animator.SetTrigger("Fire");
+
+        // 싱글톤
+        Manager.Data.AddFireCount();    // 데이터 매니저에서
+        Manager.Game.GamePause();       // 게임 매니저에서
+
+        OnFired.Invoke();
     }
+
+    private void Head()
+    {
+    }
+
     /*
     private void OnHead()
     {
@@ -83,6 +101,7 @@ public class TankController : MonoBehaviour
         headDir.x = inputDir.x;
         headDir.y = inputDir.y;
     }
+
 
     private void OnZoom(InputValue value)
     {
